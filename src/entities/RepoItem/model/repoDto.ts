@@ -9,6 +9,9 @@ export class RepoDto {
     id: number
     name: string
     visibility: string
+    description: string
+    language: string
+    stargazersCount: number
 
     constructor(model: any) {
         // this.owner = model.owner
@@ -18,5 +21,8 @@ export class RepoDto {
         this.id = model.id
         this.name = model.name
         this.visibility = model.visibility
+        this.language = model.language
+        this.stargazersCount = model.stargazers_count
+        this.description = model.description
     }
 }

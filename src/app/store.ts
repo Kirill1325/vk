@@ -4,7 +4,6 @@ import { makeObservable, observable, runInAction } from 'mobx';
 
 class Store {
 
-    // repoService: RepoService
     status: string
     repos: Repo[]
 
@@ -13,16 +12,16 @@ class Store {
             repos: observable,
             status: observable
         })
-        // this.repoService = new RepoService()
         this.status = ""
         this.repos = []
     }
 
     async getRepos(urlParams: string) {
         try {
-            this.status = "fetching"
+            runInAction(() => {
+                this.status = "fetching"
+            })
             const repos = await repoService.getRepos(urlParams)
-            // console.log(repos)
             runInAction(() => {
                 this.status = "success"
             })
@@ -34,6 +33,10 @@ class Store {
                 this.status = "error"
             })
         }
+    }
+
+    deleteRepo(id: number){
+        this.repos =this.repos.filter((repo) => repo.id !== id)
     }
 
 }

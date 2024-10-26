@@ -13,5 +13,8 @@ export type Repo = {
     owner: Owner
     id: number
     name: string
+    description: string
+    language: string
+    stargazersCount: number
     visibility: Visibility
 }
