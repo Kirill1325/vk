@@ -1,0 +1,62 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+    color: white;
+}
+
+.App {
+    height: 100vh;
+    background: rgb(15, 18, 20);
+}
+
+.row {
+    color: white;
+    display: flex;
+    padding: 0 10px;
+}
+
+.MuiTypography-root {
+    color: white !important;
+}
+
+.MuiFormControl-root {
+    color: white !important;
+
+    >.MuiFormLabel-root {
+        color: white !important;
+        top: -30%;
+    }
+
+    >.Mui-focused{
+        top: 5%;
+    }
+
+    >.MuiInputBase-root {
+        color: white !important;
+        height: 2em;
+
+        >input{
+            padding: .1em !important;
+        }
+
+        // &::before {
+        //     border: 1px solid white !important;
+        // }
+
+        // &::after {
+        //     border-bottom: 1px solid red !important;
+        // }
+
+    }
+
+    >.MuiOutlinedInput-root {
+        // outline: 1px solid white !important;
+
+        &:focus {
+            outline: none !important;
+        }
+    }
+
+}
