@@ -1,0 +1,12 @@
+.repoItem {
+    width: 90vw;
+    background: rgb(20, 24, 27) !important;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+
+    @media screen and (min-width: 600px) {
+        width: 50vw;
+    }
+}

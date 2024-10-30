@@ -1,23 +1,22 @@
 import { Repo } from "../entities/RepoItem";
+import { filters } from "../entities/Select/ui/Select";
 import { repoService } from "../widgets/ReposList";
 import { makeObservable, observable, runInAction } from 'mobx';
 
-// TODO: раскидать на разные сторы
-// TODO: action for handling closing editing mode
-// TODO: добавить подгрузку репозиториев
-// TODO: тесты
 class Store {
 
-    status: string
-    repos: Repo[]
- 
+    status = ""
+    repos: Repo[] = []
+    filter = filters[0]
+    page = 1
+
     constructor() {
         makeObservable(this, {
             repos: observable,
-            status: observable
+            status: observable,
+            filter: observable,
+            page: observable
         })
-        this.status = ""
-        this.repos = []
     }
 
     async getRepos(urlParams: string) {
@@ -30,10 +29,9 @@ class Store {
                 this.status = "success"
             })
             runInAction(() => {
-                console.log('add')
                 this.repos = [...this.repos, ...repos]
             })
-        } catch (e) {
+        } catch (_e) {
             runInAction(() => {
                 this.status = "error"
             })
@@ -51,7 +49,11 @@ class Store {
         runInAction(() => {
             this.repos = this.repos.map((repo) => {
                 if (repo.id === id) {
-                    return { ...repo, stargazersCount: repo.starred ? repo.stargazersCount - 1 : repo.stargazersCount + 1, starred: !repo.starred }
+                    return {
+                        ...repo,
+                        stargazersCount: repo.starred ? repo.stargazersCount - 1 : repo.stargazersCount + 1,
+                        starred: !repo.starred
+                    }
                 }
                 return repo
             })
@@ -66,6 +68,35 @@ class Store {
                 }
                 return repo
             })
+        })
+    }
+
+    setIsEditing(id: number | 'all', isEditing: boolean) {
+        runInAction(() => {
+            id === 'all'
+                ? this.repos = this.repos.map((repo) => {
+                    return { ...repo, isEditing: isEditing }
+                })
+                : this.repos = this.repos.map((repo) => {
+                    if (repo.id === id) {
+                        return { ...repo, isEditing: isEditing }
+                    }
+                    return { ...repo, isEditing: false }
+                })
+        })
+    }
+
+    setPage(page: number) {
+        runInAction(() => {
+            this.page = page
+        })
+    }
+
+    setFilter(filter: string) {
+        runInAction(() => {
+            this.page = 1
+            this.repos = []
+            this.filter = filter
         })
     }
 

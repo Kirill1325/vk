@@ -1,0 +1,44 @@
+.loading {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgb(15, 18, 20)
+}
+
+.reposList {
+    position: relative;
+    height: 95%;
+    overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-top: 2em;
+
+    @media screen and (min-width: 600px) {
+        height: 100%;
+    }
+
+    >button {
+        position: fixed;
+        right: 2em;
+        top: 92%;
+        z-index: 3;
+
+        @media screen and (min-width: 600px) {
+            top: 1em;
+        }
+    }
+
+    >.bottomLoading {
+        width: 90%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: rgb(15, 18, 20);
+        position: fixed;
+        bottom: 0;
+        padding: .5em;
+    }
+}

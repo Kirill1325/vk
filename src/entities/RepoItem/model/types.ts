@@ -11,4 +11,5 @@ export type Repo = {
     language: string
     stargazersCount: number
     starred: boolean
+    isEditing: boolean
 }

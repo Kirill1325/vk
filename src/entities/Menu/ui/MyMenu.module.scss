@@ -1,0 +1,12 @@
+.menuContent {
+    display: flex;
+
+    @media screen and (min-width: 600px) {
+        display: none;
+    }
+}
+
+.menuItem {
+    display: flex;
+    gap: .5em;
+}

@@ -1,0 +1,1 @@
+export { BasicMenu as MyMenu} from './ui/MyMenu'

@@ -11,9 +11,9 @@ export class RepoDto {
     language: string
     stargazersCount: number
     starred = false
+    isEditing = false
 
     constructor(model: any) {
-        // this.owner = model.owner
         this.owner.avatarUrl = model.owner.avatar_url
         this.owner.id = model.owner.id
         this.id = model.id

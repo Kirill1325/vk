@@ -19,7 +19,6 @@ class RepoService {
         const r = await response.json()
 
         const repos = r.items.map((repo: any) => new RepoDto(repo))
-        // console.log(repos)
 
         return repos
     }
