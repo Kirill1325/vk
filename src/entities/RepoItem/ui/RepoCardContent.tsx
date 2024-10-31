@@ -14,6 +14,14 @@ interface Props {
 }
 
 export const RepoCardContent = observer(({ repo, areIconsVisible }: Props) => {
+
+    const handleDelete = () => {
+        store.deleteRepo(repo.id)
+        if (store.repos.length < 5) {
+            store.setPage(store.page + 1)
+        }
+    }
+
     return (
         <Box className={cl.repoCardContent}>
             <CardContent className={cl.repoCardContentTop} >
@@ -52,7 +60,7 @@ export const RepoCardContent = observer(({ repo, areIconsVisible }: Props) => {
                         <IconButton
                             className={cl.iconButton}
                             data-testid='deleteButton'
-                            onClick={() => store.deleteRepo(repo.id)}
+                            onClick={handleDelete}
                         >
                             <DeleteIcon />
                         </IconButton>
@@ -67,7 +75,7 @@ export const RepoCardContent = observer(({ repo, areIconsVisible }: Props) => {
                     variant="subtitle1"
                     component="div"
                 >
-                    {repo.description}
+                    {repo.description.length > 200 ? repo.description.slice(0, 200) + '...' : repo.description}
                 </Typography>
             </CardContent>
 
